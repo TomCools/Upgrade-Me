@@ -30,4 +30,22 @@ public class StreamUpgradeTest {
         List<LogMessage> logMessages = StreamsUpgrade.logMessages();
 
     }
+
+    @Test
+    public void messageOfHighestPriority() {
+        List<LogMessage> logMessages = StreamsUpgrade.logMessages();
+
+    }
+
+    @Test
+    public void countAmountOfWarningsBeforeTheFirstError() {
+        List<LogMessage> logMessages = StreamsUpgrade.logMessages();
+
+    }
+
+    @Test
+    public void combinedMessageOfFirstErrorAndFollowingLogLine() {
+        List<LogMessage> logMessages = StreamsUpgrade.logMessages();
+
+    }
 }
