@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.Arrays.asList;
+import static java.util.List.of;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -19,30 +19,30 @@ public class StreamTest {
 
     @Test
     public void shouldMapStringsToUpperCase() {
-        List<String> input = asList("This", "is", "java", "8");
+        List<String> input = List.of("This", "is", "java", "8");
         List<String> result = Streams.mapToUpperCase(input);
         assertThat(result, contains("THIS", "IS", "JAVA", "8"));
     }
 
     @Test
     public void shouldReturnSquareRoot() {
-        List<Integer> numbers = Arrays.asList(1, 4, 16, 256);
+        List<Integer> numbers = List.of(1, 4, 16, 256);
         List<Integer> squares = Streams.returnSquareRoot(numbers);
-        assertThat(squares, is(equalTo(Arrays.asList(1, 2, 4, 16))));
+        assertThat(squares, is(equalTo(List.of(1, 2, 4, 16))));
     }
 
     @Test
     public void shouldReturnAgeFromUser() {
         List<User> users = User.getUsersWithAge(18, 20);
         List<Integer> ageFromUsers = Streams.getAgeFromUsers(users);
-        assertThat(ageFromUsers, is(equalTo(Arrays.asList(18, 20))));
+        assertThat(ageFromUsers, is(equalTo(List.of(18, 20))));
     }
 
     @Test
     public void shouldReturnFirstTwo() {
         List<User> users = User.getUsersWithAge(18, 20, 21, 22, 23);
         users = Streams.getLimitedUserList(users, 2);
-        assertThat(users, is(equalTo(Arrays.asList(users.get(0), users.get(1)))));
+        assertThat(users, is(equalTo(List.of(users.get(0), users.get(1)))));
     }
 
     @Test
@@ -56,40 +56,40 @@ public class StreamTest {
     public void shouldReturnDistinctAges() {
         List<User> users = User.getUsersWithAge(18, 20, 20, 21, 22, 22, 23, 24, 25, 26);
         List<Integer> distinctAges = Streams.getDistinctAges(users);
-        assertThat(distinctAges, is(equalTo(Arrays.asList(18, 20, 21, 22, 23, 24, 25, 26))));
+        assertThat(distinctAges, is(equalTo(List.of(18, 20, 21, 22, 23, 24, 25, 26))));
     }
 
     @Test
     public void shouldSumIntegersInCollection() {
-        List<Integer> integers = asList(1, 2, 3, 4, 5);
+        List<Integer> integers = List.of(1, 2, 3, 4, 5);
         Integer result = Streams.sum(integers);
         assertThat(result, equalTo(1 + 2 + 3 + 4 + 5));
     }
 
     @Test
     public void shouldSkipInCollection() {
-        List<Integer> integers = asList(1, 2, 3, 4, 5);
+        List<Integer> integers = List.of(1, 2, 3, 4, 5);
         List<Integer> result = Streams.skip(integers, 2);
-        assertThat(result, equalTo(Arrays.asList(3, 4, 5)));
+        assertThat(result, equalTo(List.of(3, 4, 5)));
     }
 
     @Test
     public void shouldReturnFirstNames() {
-        List<String> names = asList("Homer Simpson", "Marge Simpson", "Bart Simpson", "Kent Brockman");
+        List<String> names = List.of("Homer Simpson", "Marge Simpson", "Bart Simpson", "Kent Brockman");
         List<String> result = Streams.getFirstNames(names);
-        assertThat(result, equalTo(Arrays.asList("Homer", "Marge", "Bart", "Kent")));
+        assertThat(result, equalTo(List.of("Homer", "Marge", "Bart", "Kent")));
     }
 
     @Test
     public void shouldReturnDistinctLetters() {
-        List<String> names = asList("Homer Simpson", "Marge Simpson", "Bart Simpson", "Kent Brockman");
+        List<String> names = List.of("Homer Simpson", "Marge Simpson", "Bart Simpson", "Kent Brockman");
         List<String> result = Streams.getDistinctLetters(names);
-        assertThat(result, equalTo(Arrays.asList("H", "o", "m", "e", "r", " " , "S", "i", "p", "s", "n", "M", "a", "g", "B", "t", "K", "c", "k")));
+        assertThat(result, equalTo(List.of("H", "o", "m", "e", "r", " " , "S", "i", "p", "s", "n", "M", "a", "g", "B", "t", "K", "c", "k")));
     }
 
     @Test
     public void shouldSeparateNamesByComma() {
-        List<User> input = asList(
+        List<User> input = List.of(
                 new User("Homer"),
                 new User("Maggie"),
                 new User("Bart"));
@@ -111,7 +111,7 @@ public class StreamTest {
         User bart = new User("Bart", true);
         User maggie = new User("Maggie",false);
         User lisa = new User("Lisa", false);
-        List<User> input = asList(homer, bart, maggie, lisa);
+        List<User> input = List.of(homer, bart, maggie, lisa);
         Map<Boolean, List<User>> result = Streams.partionUsersByGender(input);
         assertThat(result.get(true), containsInAnyOrder(homer, bart));
         assertThat(result.get(false), containsInAnyOrder(maggie, lisa));
@@ -123,7 +123,7 @@ public class StreamTest {
         User bart = new User("Bart", 12);
         User maggie = new User("Maggie",2);
         User lisa = new User("Lisa", 8);
-        List<User> input = asList(homer, bart, maggie, lisa);
+        List<User> input = List.of(homer, bart, maggie, lisa);
         Map<Integer, List<User>> result = Streams.groupByAge(input);
         assertThat(result.get(50), containsInAnyOrder(homer));
         assertThat(result.get(12), containsInAnyOrder(bart));
@@ -137,7 +137,7 @@ public class StreamTest {
         User bart = new User("Bart", 12, true);
         User maggie = new User("Maggie",2, false);
         User lisa = new User("Lisa", 8, false);
-        List<User> input = asList(homer, bart, maggie, lisa);
+        List<User> input = List.of(homer, bart, maggie, lisa);
         Map<Boolean, Map<Integer, List<User>>> result = Streams.groupByGenderAndAge(input);
         assertThat(result.get(true).get(50), containsInAnyOrder(homer));
         assertThat(result.get(true).get(12), containsInAnyOrder(bart));
@@ -151,7 +151,7 @@ public class StreamTest {
         User bart = new User("Bart", 12, true);
         User maggie = new User("Maggie",2, false);
         User lisa = new User("Lisa", 8, false);
-        List<User> input = asList(homer, bart, maggie, lisa);
+        List<User> input = List.of(homer, bart, maggie, lisa);
         Map<Boolean, Long> result = Streams.countGender(input);
         assertThat(result.get(true), equalTo(2L));
         assertThat(result.get(false), equalTo(2L));
@@ -175,7 +175,7 @@ public class StreamTest {
         User bart = new User("Bart", true);
         User maggie = new User("Maggie",false);
         User lisa = new User("Lisa", true);
-        List<User> users = asList(homer, bart, maggie, lisa);
+        List<User> users = List.of(homer, bart, maggie, lisa);
         Optional<User> user = Streams.findAny(users, "Homer");
         assertTrue(user.isPresent());
     }
@@ -186,7 +186,7 @@ public class StreamTest {
         User bart = new User("Bart", 12);
         User maggie = new User("Maggie",2);
         User lisa = new User("Lisa", 8);
-        List<User> users = asList(homer, bart, maggie, lisa);
+        List<User> users = List.of(homer, bart, maggie, lisa);
         List<User> sorted = Streams.sortByAge(users);
         assertThat(sorted, contains(maggie, lisa, bart, homer));
     }
@@ -197,7 +197,7 @@ public class StreamTest {
         User bart = new User("Bart", 12);
         User maggie = new User("Maggie",2);
         User lisa = new User("Lisa", 8);
-        List<User> users = asList(homer, bart, maggie, lisa);
+        List<User> users = List.of(homer, bart, maggie, lisa);
         User oldest = Streams.findOldest(users);
         assertThat(oldest, equalTo(homer));
     }
@@ -208,7 +208,7 @@ public class StreamTest {
         User bart = new User("Bart", 12);
         User maggie = new User("Maggie",2);
         User lisa = new User("Lisa", 8);
-        List<User> users = asList(homer, bart, maggie, lisa);
+        List<User> users = List.of(homer, bart, maggie, lisa);
         int sumAge = Streams.sumAge(users);
         assertThat(sumAge, equalTo(50+12+2+8));
     }
@@ -219,7 +219,7 @@ public class StreamTest {
         User bart = new User("Bart", 12);
         User maggie = new User("Maggie",2);
         User lisa = new User("Lisa", 8);
-        List<User> users = asList(homer, bart, maggie, lisa);
+        List<User> users = List.of(homer, bart, maggie, lisa);
         IntSummaryStatistics statistics = Streams.ageSummaryStatistics(users);
         assertThat(statistics.getAverage(), equalTo((double)(50+12+2+8)/4));
         assertThat(statistics.getCount(),equalTo(4L));
@@ -229,7 +229,7 @@ public class StreamTest {
 
     @Test
     public void shouldConvertToBoxedStream(){
-        List<Integer> numbers = asList(1, 2, 3);
+        List<Integer> numbers = List.of(1, 2, 3);
         IntStream intStream = numbers.stream().mapToInt(value -> value);
         Stream<Integer> boxedStream = Streams.getBoxedStream(intStream);
         assertTrue(boxedStream.count() == 3);

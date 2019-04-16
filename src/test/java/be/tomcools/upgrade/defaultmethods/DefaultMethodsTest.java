@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
+import static java.util.List.of;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -24,7 +24,7 @@ public class DefaultMethodsTest {
 
         Rectangle rectangle = new Rectangle();
         Triangle triangle = new Triangle();
-        List<AbstractShape> shapes = asList(rectangle, triangle);
+        List<AbstractShape> shapes = List.of(rectangle, triangle);
         // write a static method on shape that add 10 to each xPos of a shape
         // Shape.moveXPosWith10(shapes);
         assertThat(10, equalTo(rectangle.getXPos()));
