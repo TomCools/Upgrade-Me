@@ -5,12 +5,20 @@ import static java.util.Objects.requireNonNull;
 
 public class LogMessage {
 
-    final String message;
-    final Priority priority;
+   private final String message;
+   private final Priority priority;
 
     private LogMessage(String message, Priority priority) {
         this.message = requireNonNull(message);
         this.priority = priority;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
     public static LogMessage info(String message) {

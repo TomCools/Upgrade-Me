@@ -11,6 +11,7 @@ public class StreamUpgradeTest {
     public void fromFirstWarning() {
         List<LogMessage> logMessages = StreamsUpgrade.logMessages();
 
+
         //asserThat()
     }
 
