@@ -1,6 +1,6 @@
 package be.tomcools.upgrade.stream.log;
 
-enum Priority {
+public enum Priority {
     INFO,
     WARNING,
     ERROR;
